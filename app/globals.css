@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  html {
+    -webkit-tap-highlight-color: transparent;
+    @apply bg-deep;
+  }
+  body {
+    @apply bg-bg text-ink antialiased;
+    /* A faint glow up top, like the sky before the light comes up. */
+    background-image: radial-gradient(120% 60% at 50% -10%, rgba(129, 140, 248, 0.16), transparent 60%),
+      linear-gradient(180deg, #1e1b4b 0%, #19163f 70%, #15133a 100%);
+    background-attachment: fixed;
+  }
+  ::selection {
+    @apply bg-primary/30;
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary/70 ring-offset-2 ring-offset-bg;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-line/80 bg-raised/70 shadow-card backdrop-blur-sm;
+  }
+  .label {
+    @apply text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-faint;
+  }
+  .field-label {
+    @apply mb-1.5 block text-sm font-medium text-ink;
+  }
+  .hint {
+    @apply mt-1.5 text-xs leading-relaxed text-faint;
+  }
+  .heading {
+    @apply font-serif font-normal tracking-tight text-ink;
+  }
+  .prose-dream {
+    @apply whitespace-pre-wrap font-serif text-[1.08rem] leading-[1.8] text-ink/95;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-primary text-primary-ink hover:bg-primary-bright active:scale-[0.98];
+  }
+  .btn-ghost {
+    @apply btn border border-line bg-raised/60 text-ink hover:border-strong hover:bg-surface/60;
+  }
+  .btn-quiet {
+    @apply btn text-muted hover:bg-surface/50 hover:text-ink;
+  }
+  .btn-danger {
+    @apply btn border border-unease/40 bg-unease-soft text-unease hover:bg-unease hover:text-deep;
+  }
+  .input {
+    @apply w-full rounded-xl border border-line bg-deep/60 px-3.5 py-2.5 text-sm text-ink placeholder:text-faint/80 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/15;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-raised/60 px-2.5 py-1 text-xs font-medium text-muted;
+  }
+  .skeleton {
+    @apply rounded-md bg-gradient-to-r from-raised via-line/70 to-raised bg-[length:200%_100%] animate-shimmer;
+  }
+  .hairline {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-line to-transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
